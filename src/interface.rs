@@ -36,6 +36,12 @@ pub struct HWIDevice {
     pub fingerprint: Fingerprint,
 }
 
+impl std::fmt::Debug for HWIDevice {
+    fn fmt(&self, fmt: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        write!(fmt, "fingerprint={}", self.fingerprint)
+    }
+}
+
 impl HWIDevice {
     /// Lists all HW devices currently connected.
     pub fn enumerate() -> Result<Vec<HWIDevice>, Error> {
