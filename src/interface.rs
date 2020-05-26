@@ -33,12 +33,12 @@ pub struct HWIDevice {
     pub path: String,
     pub needs_pin_sent: bool,
     pub needs_passphrase_sent: bool,
-    pub fingerprint: Fingerprint,
+    pub fingerprint: Option<Fingerprint>,
 }
 
 impl std::fmt::Debug for HWIDevice {
     fn fmt(&self, fmt: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
-        write!(fmt, "fingerprint={}", self.fingerprint)
+        write!(fmt, "model={}", self.model)
     }
 }
 

@@ -31,7 +31,7 @@ pub enum HWIFlag {
     // TODO: StdinPass,
     Testnet,
     // TODO: Debug,
-    Fingerprint(Fingerprint),
+    Fingerprint(Option<Fingerprint>),
     // TODO: Version,
     // TODO: Stdin,
     // TODO: Interactive,
@@ -44,7 +44,12 @@ impl HWIFlag {
             HWIFlag::DevicePath(p) => vec![String::from("--device-path"), format!("{}", p)],
             HWIFlag::DeviceType(t) => vec![String::from("--device-type"), format!("{}", t)],
             HWIFlag::Password(p) => vec![String::from("--password"), format!("{}", p)],
-            HWIFlag::Fingerprint(f) => vec![String::from("--fingerprint"), format!("{}", f)],
+            HWIFlag::Fingerprint(f) => match f {
+                Some(fingerprint) => {
+                    vec![String::from("--fingerprint"), format!("{}", fingerprint)]
+                }
+                None => vec![],
+            },
             _ => vec![format!("--{:?}", self).to_lowercase()],
         }
     }
