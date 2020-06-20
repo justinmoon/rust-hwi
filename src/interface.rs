@@ -25,15 +25,18 @@ macro_rules! deserialize_obj {
     }};
 }
 
+// FIXME: Should this have "locked", "unlocked" and "error" variants?
 #[derive(Clone, Deserialize)]
 pub struct HWIDevice {
     #[serde(rename(deserialize = "type"))]
     pub device_type: String,
     pub model: String,
     pub path: String,
-    pub needs_pin_sent: bool,
-    pub needs_passphrase_sent: bool,
+    pub needs_pin_sent: Option<bool>,
+    pub needs_passphrase_sent: Option<bool>,
     pub fingerprint: Option<Fingerprint>,
+    pub error: Option<String>,
+    pub code: Option<i32>,
 }
 
 impl std::fmt::Debug for HWIDevice {
