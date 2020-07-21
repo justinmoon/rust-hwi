@@ -1,3 +1,4 @@
+use std::env;
 use std::process::{Command, Output};
 
 use bitcoin::util::bip32::{DerivationPath, Fingerprint};
@@ -69,8 +70,9 @@ impl HWICommand {
     /// let command = HWICommand::new();
     /// ```
     pub fn new() -> Self {
+        let path = env::var("HWI_PATH").unwrap_or("hwi".to_string());
         HWICommand {
-            command: Command::new("hwi"),
+            command: Command::new(path),
         }
     }
 
