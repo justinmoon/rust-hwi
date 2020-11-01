@@ -26,7 +26,7 @@ macro_rules! deserialize_obj {
 }
 
 // FIXME: Should this have "locked", "unlocked" and "error" variants?
-#[derive(Clone, Deserialize)]
+#[derive(Clone, Deserialize, PartialEq)]
 pub struct HWIDevice {
     #[serde(rename(deserialize = "type"))]
     pub device_type: String,
